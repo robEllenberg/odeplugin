@@ -1,12 +1,13 @@
 ###########################################
 # oderave openrave plugin
 ###########################################
+cmake_minimum_required(VERSION 2.6)
 include(FindOpenRAVE.cmake)
 include(CheckFunctionExists.cmake)
 include(CheckCXXSourceCompiles.cmake)
 include(${CMAKE_CURRENT_SOURCE_DIR}/FindODE.cmake)
 set(ODE_USE_MULTITHREAD)
-set(PLUGIN_DIR ../../plugins)
+set(PLUGIN_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../plugins")
   include(FindOpenRAVE.cmake)
 
   if( NOT OPENRAVE_FOUND )
@@ -65,14 +66,7 @@ if(ODE_LIBRARY_FOUND)
   set_target_properties(oderave2 PROPERTIES COMPILE_FLAGS "${PLUGIN_COMPILE_FLAGS} ${ODE_CXXFLAGS} ${OPENRAVE_CXXFLAGS}" LINK_FLAGS "${PLUGIN_LINK_FLAGS} ${OPENRAVE_LINK_FLAGS}")
   install(TARGETS oderave2 DESTINATION ${PLUGIN_DIR} COMPONENT ${COMPONENT_PREFIX}plugin-oderave2)
   
-  if( MSVC )
-    # have to install the DLLs
-    install(DIRECTORY "${ODE_LINK_DIRS}/" DESTINATION bin COMPONENT ${COMPONENT_PREFIX}plugin-oderave2 FILES_MATCHING PATTERN "*-${MSVC_PREFIX}-*.dll")
-  endif()
 else()
   message(STATUS "Could not find ODE. Please install ODE (http://www.ode.org)")
 endif()
-
-set(CPACK_COMPONENT_${COMPONENT_PREFIX_UPPER}PLUGIN-ODERAVE_DISPLAY_NAME "Plugin for Open Dyanmics Engine (ode) Physics/Collision" PARENT_SCOPE)
-set(PLUGIN_COMPONENT ${COMPONENT_PREFIX}plugin-oderave2 PARENT_SCOPE)
 
