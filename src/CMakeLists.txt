@@ -7,7 +7,7 @@ include(CheckFunctionExists.cmake)
 include(CheckCXXSourceCompiles.cmake)
 include(${CMAKE_CURRENT_SOURCE_DIR}/FindODE.cmake)
 set(ODE_USE_MULTITHREAD)
-set(PLUGIN_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../plugins")
+set(PLUGIN_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../openHubo/plugins")
   include(FindOpenRAVE.cmake)
 
   if( NOT OPENRAVE_FOUND )

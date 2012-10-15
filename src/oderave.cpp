@@ -25,20 +25,20 @@ InterfaceBasePtr CreateInterfaceValidated(InterfaceType type, const std::string&
 {
     if( !s_listRegisteredReaders ) {
         s_listRegisteredReaders = new list< OpenRAVE::UserDataPtr >();
-        s_listRegisteredReaders->push_back(RaveRegisterXMLReader(OpenRAVE::PT_PhysicsEngine,"odeproperties",ODEPhysicsEngine::CreateXMLReader));
+        s_listRegisteredReaders->push_back(RaveRegisterXMLReader(OpenRAVE::PT_PhysicsEngine,"odeproperties_rob",ODEPhysicsEngine::CreateXMLReader));
     }
 
     switch(type) {
     case OpenRAVE::PT_CollisionChecker:
-        if( interfacename == "ode")
+        if( interfacename == "ode_rob")
             return InterfaceBasePtr(new ODECollisionChecker(penv));
         break;
     case OpenRAVE::PT_PhysicsEngine:
-        if( interfacename == "ode" )
+        if( interfacename == "ode_rob" )
             return InterfaceBasePtr(new ODEPhysicsEngine(penv));
         break;
     case OpenRAVE::PT_Controller:
-        if( interfacename == "odevelocity")
+        if( interfacename == "odevelocity_rob")
             return InterfaceBasePtr(new ODEVelocityController(penv));
         break;
     default:
@@ -50,9 +50,9 @@ InterfaceBasePtr CreateInterfaceValidated(InterfaceType type, const std::string&
 
 void GetPluginAttributesValidated(PLUGININFO& info)
 {
-    info.interfacenames[OpenRAVE::PT_CollisionChecker].push_back("ode");
-    info.interfacenames[OpenRAVE::PT_PhysicsEngine].push_back("ode");
-    info.interfacenames[OpenRAVE::PT_Controller].push_back("odevelocity");
+    info.interfacenames[OpenRAVE::PT_CollisionChecker].push_back("ode_rob");
+    info.interfacenames[OpenRAVE::PT_PhysicsEngine].push_back("ode_rob");
+    info.interfacenames[OpenRAVE::PT_Controller].push_back("odevelocity_rob");
 }
 
 OPENRAVE_PLUGIN_API void DestroyPlugin()
