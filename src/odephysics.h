@@ -488,7 +488,7 @@ The possible properties that can be set are: ";
             }
         }
 
-        dWorldQuickStep(_odespace->GetWorld(), fTimeElapsed);
+        dWorldStep(_odespace->GetWorld(), fTimeElapsed);
         dJointGroupEmpty (_odespace->GetContactGroup());
 
         // synchronize all the objects from the ODE world to the OpenRAVE world

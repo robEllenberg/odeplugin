@@ -14,7 +14,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "plugindefs.h"
 
-#include "odecollision.h"
+//#include "odecollision.h"
 #include "odephysics.h"
 #include "odecontroller.h"
 
@@ -29,10 +29,10 @@ InterfaceBasePtr CreateInterfaceValidated(InterfaceType type, const std::string&
     }
 
     switch(type) {
-    case OpenRAVE::PT_CollisionChecker:
-        if( interfacename == "ode_rob")
-            return InterfaceBasePtr(new ODECollisionChecker(penv));
-        break;
+    //case OpenRAVE::PT_CollisionChecker:
+        //if( interfacename == "ode_rob")
+            //return InterfaceBasePtr(new ODECollisionChecker(penv));
+        //break;
     case OpenRAVE::PT_PhysicsEngine:
         if( interfacename == "ode_rob" )
             return InterfaceBasePtr(new ODEPhysicsEngine(penv));
@@ -50,7 +50,7 @@ InterfaceBasePtr CreateInterfaceValidated(InterfaceType type, const std::string&
 
 void GetPluginAttributesValidated(PLUGININFO& info)
 {
-    info.interfacenames[OpenRAVE::PT_CollisionChecker].push_back("ode_rob");
+    //info.interfacenames[OpenRAVE::PT_CollisionChecker].push_back("ode_rob");
     info.interfacenames[OpenRAVE::PT_PhysicsEngine].push_back("ode_rob");
     info.interfacenames[OpenRAVE::PT_Controller].push_back("odevelocity_rob");
 }
