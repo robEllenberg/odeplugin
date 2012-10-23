@@ -17,6 +17,7 @@
 //#include "odecollision.h"
 #include "odephysics.h"
 #include "odecontroller.h"
+#include "torquecontroller.h"
 
 #include <openrave/plugin.h>
 
@@ -40,6 +41,8 @@ InterfaceBasePtr CreateInterfaceValidated(InterfaceType type, const std::string&
     case OpenRAVE::PT_Controller:
         if( interfacename == "odevelocity_rob")
             return InterfaceBasePtr(new ODEVelocityController(penv));
+        else if( interfacename == "torquecontroller")
+            return InterfaceBasePtr(new ODETorqueController(penv));
         break;
     default:
         break;
@@ -50,9 +53,9 @@ InterfaceBasePtr CreateInterfaceValidated(InterfaceType type, const std::string&
 
 void GetPluginAttributesValidated(PLUGININFO& info)
 {
-    //info.interfacenames[OpenRAVE::PT_CollisionChecker].push_back("ode_rob");
     info.interfacenames[OpenRAVE::PT_PhysicsEngine].push_back("ode_rob");
     info.interfacenames[OpenRAVE::PT_Controller].push_back("odevelocity_rob");
+    info.interfacenames[OpenRAVE::PT_Controller].push_back("torquecontroller");
 }
 
 OPENRAVE_PLUGIN_API void DestroyPlugin()

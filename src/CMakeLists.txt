@@ -41,7 +41,7 @@ if(ODE_LIBRARY_FOUND)
   endif()
 
   include_directories(${ODE_INCLUDE_DIRS} ${OPENRAVE_INCLUDE_DIRS} )
-  add_library(oderave2 SHARED oderave.cpp odecollision.h odephysics.h odespace.h odecontroller.h plugindefs.h)
+  add_library(odeplugin SHARED oderave.cpp odecollision.h odephysics.h odespace.h odecontroller.h plugindefs.h)
   
   # test for ode version 0.10
   check_cxx_source_compiles("
@@ -62,9 +62,9 @@ if(ODE_LIBRARY_FOUND)
 
   message(STATUS "ODE found, building oderave plugin, precision=${ODE_PRECISION}")
 
-  target_link_libraries(oderave2 ${ODE_LIBRARY} ${OPENRAVE_LIBRARY})
-  set_target_properties(oderave2 PROPERTIES COMPILE_FLAGS "${PLUGIN_COMPILE_FLAGS} ${ODE_CXXFLAGS} ${OPENRAVE_CXXFLAGS}" LINK_FLAGS "${PLUGIN_LINK_FLAGS} ${OPENRAVE_LINK_FLAGS}")
-  install(TARGETS oderave2 DESTINATION ${PLUGIN_DIR} COMPONENT ${COMPONENT_PREFIX}plugin-oderave2)
+  target_link_libraries(odeplugin ${ODE_LIBRARY} ${OPENRAVE_LIBRARY})
+  set_target_properties(odeplugin PROPERTIES COMPILE_FLAGS "${PLUGIN_COMPILE_FLAGS} ${ODE_CXXFLAGS} ${OPENRAVE_CXXFLAGS}" LINK_FLAGS "${PLUGIN_LINK_FLAGS} ${OPENRAVE_LINK_FLAGS}")
+  install(TARGETS odeplugin DESTINATION ${PLUGIN_DIR} COMPONENT ${COMPONENT_PREFIX}plugin-odeplugin)
   
 else()
   message(STATUS "Could not find ODE. Please install ODE (http://www.ode.org)")
