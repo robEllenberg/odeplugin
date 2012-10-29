@@ -6,7 +6,7 @@ include(FindOpenRAVE.cmake)
 include(CheckFunctionExists.cmake)
 include(CheckCXXSourceCompiles.cmake)
 include(${CMAKE_CURRENT_SOURCE_DIR}/FindODE.cmake)
-set(ODE_USE_MULTITHREAD)
+set(ODE_USE_MULTITHREAD ON)
 set(PLUGIN_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../plugins")
   include(FindOpenRAVE.cmake)
 
